@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-labelledby="title description">
+  <title id="title">Открытки поддержки — давай, зайка, ты сможешь!</title>
+  <desc id="description">Рыжий котик обнимает розовый конверт со светящимся сердечком на сливовом фоне.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#160b23"/>
+      <stop offset=".53" stop-color="#28122e"/>
+      <stop offset="1" stop-color="#421d3e"/>
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop stop-color="#ff4792" stop-opacity=".5"/>
+      <stop offset=".62" stop-color="#ed4786" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#bc45d0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#ffdb99"/>
+      <stop offset="1" stop-color="#ffa4d5"/>
+    </linearGradient>
+    <linearGradient id="fur" x1=".15" y1="0" x2=".8" y2="1">
+      <stop stop-color="#ffe0a9"/>
+      <stop offset="1" stop-color="#f5a66f"/>
+    </linearGradient>
+    <linearGradient id="envelope" x1="0" y1="0" x2=".85" y2="1">
+      <stop stop-color="#fff1f7"/>
+      <stop offset="1" stop-color="#f9acd4"/>
+    </linearGradient>
+    <clipPath id="edge"><rect width="900" height="300" rx="22"/></clipPath>
+    <path id="heart" d="M0 5c-10-6-15 5-7 11l7 6 7-6c8-6 3-17-7-11Z"/>
+    <path id="star" d="M0-10Q2-2 10 0 2 2 0 10-2 2-10 0-2-2 0-10Z"/>
+  </defs>
+
+  <g clip-path="url(#edge)">
+    <rect width="900" height="300" fill="url(#background)"/>
+    <ellipse cx="721" cy="145" rx="215" ry="177" fill="url(#halo)"/>
+    <path d="M565 273c48 15 166-4 233-51 51-35 64-74 39-88-26-16-112 11-177 51-54 33-79 64-69 81"
+          fill="none" stroke="#f191d0" stroke-opacity=".24" stroke-width="1.5"/>
+    <path d="M580 239c38 29 128 29 207-4 49-21 77-47 68-67"
+          fill="none" stroke="#c78bf8" stroke-opacity=".25" stroke-width="1.5"/>
+
+    <g fill="#ffbbdd">
+      <use href="#star" transform="translate(576 98) scale(.7)"/>
+      <use href="#star" transform="translate(849 107) scale(.88)"/>
+      <use href="#star" transform="translate(852 263) scale(.5)"/>
+      <circle cx="603" cy="69" r="2"/>
+      <circle cx="812" cy="51" r="2.5"/>
+      <circle cx="861" cy="56" r="1.7"/>
+      <circle cx="574" cy="220" r="2.2"/>
+    </g>
+    <g fill="#ffe0a9">
+      <use href="#star" transform="translate(609 149) scale(.44)"/>
+      <use href="#star" transform="translate(807 74) scale(.64)"/>
+      <use href="#star" transform="translate(830 204) scale(.48)"/>
+      <circle cx="630" cy="50" r="2.2"/>
+    </g>
+    <g fill="#ff85ba">
+      <use href="#heart" transform="translate(609 110) rotate(-18) scale(.66)"/>
+      <use href="#heart" transform="translate(847 62) rotate(14) scale(.82)"/>
+      <use href="#heart" transform="translate(814 247) rotate(18) scale(.48)"/>
+    </g>
+
+    <g font-family="system-ui, 'Segoe UI', Arial, sans-serif">
+      <text x="56" y="67" fill="#ffabd3" font-size="17" font-weight="720" letter-spacing="2.6">ОТКРЫТКИ ПОДДЕРЖКИ</text>
+      <text x="53" y="130" fill="#fff5ff" font-size="55" font-weight="850" letter-spacing="-1.8">Давай, зайка,</text>
+      <text x="53" y="190" fill="url(#warm)" font-size="55" font-weight="850" letter-spacing="-1.8">ты сможешь!</text>
+      <path d="M57 210h372" stroke="#fb9ed1" stroke-opacity=".29"/>
+      <text x="57" y="242" fill="#f1d6ee" font-size="20" font-weight="520">Пусть сегодня случится что-нибудь хорошее.</text>
+    </g>
+
+    <g stroke-linecap="round" stroke-linejoin="round">
+      <path d="M774 238c43-4 44-43 21-48" fill="none" stroke="#5b2a3e" stroke-width="18"/>
+      <path d="M774 238c43-4 44-43 21-48" fill="none" stroke="#f6ac7a" stroke-width="12"/>
+      <path d="M648 224c3-28 31-44 62-44 42 0 67 21 72 49 3 23-18 37-65 38-40 1-72-10-69-43Z"
+            fill="url(#fur)" stroke="#672f40" stroke-width="4"/>
+      <path d="M635 139c0-12 4-25 9-36l-2-41q0-8 8-5l39 29q25-5 46 0l40-29q8-3 8 5l-3 43q18 21 14 44c-4 32-37 50-79 50-48 0-81-20-80-60Z"
+            fill="url(#fur)" stroke="#672f40" stroke-width="4"/>
+      <path d="m651 69 27 21q-13 4-22 13Zm124 0-27 21q12 4 22 13Z" fill="#e991ac"/>
+      <path d="M698 92l8 13m8-15 2 12m13-11-4 13" fill="none" stroke="#cd785c" stroke-width="3" opacity=".72"/>
+      <path d="M647 134l13 5m-12 3 10 4m122-14-12 6m12 3-10 5" fill="none" stroke="#d4805f" stroke-width="3"/>
+      <path d="M673 138q7-9 15 0m52 0q8-9 16 0" fill="none" stroke="#612e45" stroke-width="4"/>
+      <ellipse cx="667" cy="151" rx="11" ry="5" fill="#ef8da9" opacity=".65"/>
+      <ellipse cx="760" cy="151" rx="11" ry="5" fill="#ef8da9" opacity=".65"/>
+      <path d="M707 144q6-4 12 0l-6 6Z" fill="#a74d70"/>
+      <path d="M713 149v3q-6 8-12 1m12-1q6 8 12 1" fill="none" stroke="#703647" stroke-width="2.7"/>
+
+      <g transform="rotate(-9 715 211)">
+        <rect x="657" y="181" width="117" height="65" rx="9" fill="#663751" opacity=".23" transform="translate(0 6)"/>
+        <rect x="657" y="181" width="117" height="65" rx="9" fill="url(#envelope)" stroke="#8e4a6e" stroke-width="3"/>
+        <path d="m662 240 36-30m71 30-36-30" fill="none" stroke="#da8fb7" stroke-width="2"/>
+        <path d="m662 188 49 31q5 3 10 0l48-31" fill="none" stroke="#ba6a96" stroke-width="2.5"/>
+        <use href="#heart" transform="translate(716 196) scale(.95)" fill="#df4787"/>
+      </g>
+      <path d="M644 205c-3-9 1-15 10-15 13 0 19 8 15 16-4 7-20 11-25-1Zm132 3c5-7 2-15-7-17-12-2-20 5-17 13 4 9 18 12 24 4Z"
+            fill="#ffd69b" stroke="#84424c" stroke-width="3"/>
+      <path d="m651 200 2 5m7-7 2 4m101-2-2 4m9-3-2 5" fill="none" stroke="#bc735f" stroke-width="1.5"/>
+    </g>
+  </g>
+  <rect x=".75" y=".75" width="898.5" height="298.5" rx="21.25" fill="none" stroke="#ff9ed5" stroke-opacity=".42" stroke-width="1.5"/>
+</svg>

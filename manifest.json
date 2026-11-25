@@ -1,0 +1,10 @@
+{
+  "display_name": "Открытки поддержки",
+  "author": "Codex",
+  "version": "1.5.2",
+  "loading_order": 100,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "css": "style.css"
+}

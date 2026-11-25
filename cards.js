@@ -250,3 +250,33 @@ export function getPeriodCards(period) {
     }));
     return [...cozy, ...silly, ...bonusCards[period.id]];
 }
+
+function takeRandom(pool, previous) {
+    const different = pool.filter(item => item !== previous);
+    const choices = different.length ? different : pool;
+    const value = choices[Math.floor(Math.random() * choices.length)];
+    pool.splice(pool.indexOf(value), 1);
+    return value;
+}
+
+export function createPostcardDeck(period) {
+    const artworks = new Map();
+    for (const postcard of getPeriodCards(period)) {
+        if (!artworks.has(postcard.asset)) artworks.set(postcard.asset, { captions: [], remaining: [], previous: null });
+        artworks.get(postcard.asset).captions.push(postcard);
+    }
+
+    let remaining = [];
+    let previousAsset;
+    return function draw() {
+        if (!remaining.length) remaining = [...artworks.keys()];
+        const asset = takeRandom(remaining, previousAsset);
+        previousAsset = asset;
+
+        const artwork = artworks.get(asset);
+        if (!artwork.remaining.length) artwork.remaining = [...artwork.captions];
+        const postcard = takeRandom(artwork.remaining, artwork.previous);
+        artwork.previous = postcard;
+        return postcard;
+    };
+}

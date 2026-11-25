@@ -1,4 +1,4 @@
-import { getPeriodCards, getSlot } from './cards.js';
+import { createPostcardDeck, getSlot } from './cards.js';
 
 const context = globalThis.SillyTavern?.getContext();
 const arrow = '<path d="M4 12h15m-6-6 6 6-6 6"/>';
@@ -26,6 +26,8 @@ function start() {
     card.id = 'support-postcard';
     card.lang = 'ru';
     card.hidden = true;
+    const usePopover = typeof card.showPopover === 'function';
+    if (usePopover) card.setAttribute('popover', 'manual');
     card.setAttribute('aria-label', 'Открытка поддержки');
     card.innerHTML = `
         <div class="support-postcard-art">
@@ -55,10 +57,12 @@ function start() {
     const close = card.querySelector('.support-postcard-close');
     const next = card.querySelector('.support-postcard-next');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const viewport = window.visualViewport;
     const decks = new Map();
     let animations = [];
     let shownSlot;
     let timer;
+    let viewportFrame = 0;
     let openedManually = false;
 
     function stopEffects() {
@@ -77,22 +81,25 @@ function start() {
         ];
     }
 
+    function fitViewport() {
+        if (!viewport) return;
+        card.style.setProperty('--postcard-viewport-left', `${viewport.offsetLeft}px`);
+        card.style.setProperty('--postcard-viewport-top', `${viewport.offsetTop}px`);
+        card.style.setProperty('--postcard-viewport-width', `${viewport.width}px`);
+        card.style.setProperty('--postcard-viewport-height', `${viewport.height}px`);
+    }
+
+    function queueViewportFit() {
+        if (viewportFrame) return;
+        viewportFrame = window.requestAnimationFrame(() => {
+            viewportFrame = 0;
+            fitViewport();
+        });
+    }
+
     function showCard(period) {
-        if (!decks.has(period.id)) {
-            decks.set(period.id, { remaining: [], seenArt: new Set(), lastArt: '' });
-        }
-        const deck = decks.get(period.id);
-        if (!deck.remaining.length) {
-            deck.remaining = getPeriodCards(period);
-            deck.seenArt.clear();
-        }
-        const unseenArt = deck.remaining.filter(item => item.asset !== deck.lastArt && !deck.seenArt.has(item.asset));
-        const differentArt = deck.remaining.filter(item => item.asset !== deck.lastArt);
-        const choices = unseenArt.length ? unseenArt : differentArt.length ? differentArt : deck.remaining;
-        const postcard = choices[Math.floor(Math.random() * choices.length)];
-        deck.remaining.splice(deck.remaining.indexOf(postcard), 1);
-        deck.seenArt.add(postcard.asset);
-        deck.lastArt = postcard.asset;
+        if (!decks.has(period.id)) decks.set(period.id, createPostcardDeck(period));
+        const postcard = decks.get(period.id)();
 
         card.dataset.period = period.id;
         card.dataset.palette = postcard.palette ?? '';
@@ -102,8 +109,15 @@ function start() {
         greeting.textContent = period.greeting;
         title.textContent = postcard.title;
         message.textContent = postcard.message;
-        card.hidden = false;
-        open.setAttribute('aria-expanded', 'true');
+        copy.scrollTop = 0;
+        if (card.hidden) {
+            fitViewport();
+            card.hidden = false;
+            if (usePopover) card.showPopover();
+            viewport?.addEventListener('resize', queueViewportFit);
+            viewport?.addEventListener('scroll', queueViewportFit);
+            open.setAttribute('aria-expanded', 'true');
+        }
         animateCard();
     }
 
@@ -131,7 +145,14 @@ function start() {
 
     function hideCard() {
         const restoreFocus = openedManually && card.contains(document.activeElement);
+        if (usePopover) card.hidePopover();
         card.hidden = true;
+        viewport?.removeEventListener('resize', queueViewportFit);
+        viewport?.removeEventListener('scroll', queueViewportFit);
+        if (viewportFrame) {
+            window.cancelAnimationFrame(viewportFrame);
+            viewportFrame = 0;
+        }
         stopEffects();
         image.removeAttribute('src');
         open.setAttribute('aria-expanded', 'false');
